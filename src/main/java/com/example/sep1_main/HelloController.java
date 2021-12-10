@@ -9,7 +9,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
-import parser.XmlJsonParser;
 
 import java.io.File;
 import java.lang.reflect.Array;
@@ -83,20 +82,15 @@ public class HelloController
 
         csvButton0.setOnAction(event -> {
             Window stage = tabPane.getScene().getWindow();
-
-            FileChooser csvFileChooser = new FileChooser();
+            FileChooser openmultipleteams = new FileChooser();
+            openmultipleteams.setTitle("Open Multiple Files Dialog");
             FileChooser.ExtensionFilter csvTextFilter = new FileChooser.ExtensionFilter(
                 "csv files (*.csv)", "*.csv");
-            csvFileChooser.getExtensionFilters().add(csvTextFilter);
-
-            File csvfile = csvFileChooser.showOpenDialog(stage);
-            if (csvfile != null)
+            openmultipleteams.getExtensionFilters().add(csvTextFilter);
+            List<File> files = openmultipleteams.showOpenMultipleDialog(stage);
+            for (File file: files)
             {
-                menuLabel0.setText(csvfile.getPath());
-            }
-            else
-            {
-                menuLabel0.setText("Could not resolve file");
+                String currentFilePath = file.getPath();
             }
         });
 
