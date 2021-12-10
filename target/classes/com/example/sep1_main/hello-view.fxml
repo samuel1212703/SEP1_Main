@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sep1_main.HelloController">
+    <tabs>
+        <Tab text="Menu">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="235.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="menuLabel0" />
+                        <Button fx:id="csvButton0" mnemonicParsing="false" text="Add Team File">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label fx:id="menuLabel1" />
+                        <Button fx:id="csvButton1" mnemonicParsing="false" text="Add Classrooms File">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label fx:id="menuLabel2" />
+                        <Button fx:id="csvButton2" mnemonicParsing="false" text="Add Courses File">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="Scheduler">
+            <content>
+                <AnchorPane>
+                    <children>
+                        <BorderPane fx:id="borderPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <right>
+                                <VBox fx:id="sideVBox" prefHeight="376.0" prefWidth="125.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <ComboBox fx:id="comboBox1" prefWidth="150.0" promptText="Classroom" />
+                                        <ComboBox fx:id="comboBox2" prefWidth="150.0" promptText="Subject">
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" top="3.0" />
+                                            </VBox.margin>
+                                        </ComboBox>
+                                        <ComboBox fx:id="comboBox3" prefWidth="150.0" promptText="Lecturers" />
+                                        <TextField fx:id="textField0" promptText="Duration (1-2)" />
+                                        <TextField fx:id="textField1" promptText="Year" />
+                              <TextField fx:id="textField2" prefHeight="25.0" prefWidth="57.0" promptText="Week" />
+                                        <TextField fx:id="textField3" promptText="Day (1-5)" />
+                                        <TextField fx:id="textField4" promptText="Module (1-4)" />
+                                        <HBox prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <Button fx:id="sideDoneButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createLesson" prefWidth="10000.0" text="Done" textAlignment="CENTER" />
+                                                <Button fx:id="sideCancelButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelLesson" prefWidth="10000.0" text="Cancel" textAlignment="CENTER" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                    <BorderPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </BorderPane.margin>
+                                </VBox>
+                            </right>
+                            <top>
+                                <VBox fx:id="topVBox" prefHeight="26.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="100000.0" text="Scheduler" textAlignment="CENTER">
+                                            <font>
+                                                <Font size="21.0" />
+                                            </font>
+                                        </Label>
+                                        <ComboBox fx:id="comboBox0" prefWidth="150.0" promptText="Hold/Team" />
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="weekBackButton" mnemonicParsing="false" onAction="#weekBack">
+                                       <graphic>
+                                          <Icon content="ARROW_BACK" maxHeight="25.0" maxWidth="35.0" minHeight="25.0" prefHeight="25.0" prefWidth="35.0" />
+                                       </graphic>
+                                    </Button>
+                                    <TextField fx:id="weekTextField" prefHeight="25.0" prefWidth="63.0" promptText="Week" />
+                                    <Button fx:id="weekForwardButton" mnemonicParsing="false" onAction="#weekForward">
+                                       <graphic>
+                                          <Icon content="ARROW_FORWARD" maxHeight="25.0" maxWidth="35.0" minHeight="25.0" prefHeight="25.0" prefWidth="35.0" />
+                                       </graphic>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                                    </children>
+                                </VBox>
+                            </top>
+                     <center>
+                        <SplitPane fx:id="centerSplitPane" dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <items>
+                            <AnchorPane maxWidth="40.0" minWidth="40.0" prefWidth="40.0">
+                                 <children>
+                                    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="08:20&#10;-&#10;10:05" textAlignment="CENTER" />
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="10:05&#10;-&#10;11:50" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="12:45&#10;-&#10;14:20" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="14:30&#10;-&#10;16:05" textAlignment="CENTER" GridPane.rowIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="332.0" prefWidth="405.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.07085020242914979" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane maxHeight="20.0" minHeight="20.0" prefHeight="20.0">
+                                             <children>
+                                                <GridPane layoutX="106.0" layoutY="36.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="10000.0" text="Monday" textAlignment="CENTER" />
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="10000.0" text="Tuesday" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="10000.0" text="Wednesday" textAlignment="CENTER" GridPane.columnIndex="2" />
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="10000.0" text="Thursday" textAlignment="CENTER" GridPane.columnIndex="3" />
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="10000.0" text="Friday" textAlignment="CENTER" GridPane.columnIndex="4" />
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane fx:id="centerAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <GridPane fx:id="gridPane" gridLinesVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </center>
+                        </BorderPane>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
