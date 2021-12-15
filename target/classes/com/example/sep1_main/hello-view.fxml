@@ -26,19 +26,16 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="235.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label fx:id="menuLabel0" />
                         <Button fx:id="csvButton0" mnemonicParsing="false" text="Add Team File">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Label fx:id="menuLabel1" />
                         <Button fx:id="csvButton1" mnemonicParsing="false" text="Add Classrooms File">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Label fx:id="menuLabel2" />
                         <Button fx:id="csvButton2" mnemonicParsing="false" text="Add Courses File">
                            <VBox.margin>
                               <Insets bottom="10.0" />
@@ -68,13 +65,21 @@
                               <TextField fx:id="textField2" prefHeight="25.0" prefWidth="57.0" promptText="Week" />
                                         <TextField fx:id="textField3" promptText="Day (1-5)" />
                                         <TextField fx:id="textField4" promptText="Module (1-4)" />
-                                        <HBox prefHeight="100.0" prefWidth="200.0">
+                                        <HBox prefHeight="100.0" prefWidth="126.0">
                                             <children>
                                                 <Button fx:id="sideDoneButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createLesson" prefWidth="10000.0" text="Done" textAlignment="CENTER" />
                                                 <Button fx:id="sideCancelButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelLesson" prefWidth="10000.0" text="Cancel" textAlignment="CENTER" />
                                             </children>
                                         </HBox>
+<<<<<<< Updated upstream
                               <Button fx:id="exportButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exportSchedule" prefHeight="54.0" prefWidth="125.0" text="Export" textAlignment="CENTER" />
+=======
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="133.0" text="Export" />
+                                 </children>
+                              </HBox>
+>>>>>>> Stashed changes
                                     </children>
                                     <BorderPane.margin>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

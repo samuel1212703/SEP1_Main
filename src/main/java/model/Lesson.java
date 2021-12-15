@@ -4,35 +4,36 @@ import java.util.Calendar;
 
 public class Lesson
 {
-  private Date startTime;
+  private Date dateLesson;
   private Classroom classroom;
   private Course course;
+  private int moduleIndex;
 
-  public Lesson(Course course, Date startTime, Classroom classroom)
+  public Lesson(Course course, Date date, Classroom classroom, int moduleIndex)
   {
     this.course = course;
-    this.startTime = startTime;
+    this.dateLesson = date;
     this.classroom = classroom;
+    this.moduleIndex = moduleIndex;
   }
 
-
- /* public Date getEndTime()
+  public Date getDateLesson()
   {
-    Date endTime = new Date(startTime.getDate().get(Calendar.YEAR),
-        startTime.getDate().get(Calendar.MONTH),
-        startTime.getDate().get(Calendar.DAY_OF_MONTH),
-        startTime.getDate().get(Calendar.HOUR),
-        startTime.getDate().get(Calendar.MINUTE));
-    endTime.getDate().add(Calendar.MINUTE, duration);
-    return endTime;
-  }
-*/
-  public Date getDate()
-  {
-    return this.startTime;
+    return dateLesson;
   }
 
-  public void setIdealClassroom()
+  public int getModuleIndex()
   {
+    return moduleIndex;
+  }
+
+  public Classroom getClassroom()
+  {
+    return classroom;
+  }
+
+  public Course getCourse()
+  {
+    return course;
   }
 }

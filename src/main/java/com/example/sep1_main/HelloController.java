@@ -73,15 +73,12 @@ public class HelloController
       }
     });
 
-
-
     int year = 2021; //Calendar.getInstance().get(Calendar.YEAR);
     // int week = 12; //Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
     // int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
     // int moduleIndex = 1;
     int week = currentWeek;
 
-    textField0.setText("1");
     textField1.setText(year + "");
     textField2.setText(week + "");
     // textField3.setText(day + "");
@@ -123,10 +120,8 @@ public class HelloController
           e.printStackTrace();
         }
       }
-      System.out.println(
-          teams.get(0).getTeamName() + " , " + teams.get(0).getStudents());
-      System.out.println(teams.get(1).getTeamName() + " , " + teams.get(1).getStudents());
-      for(Team team : teams){
+      for (Team team : teams)
+      {
         teamNames.add(team.getTeamName());
       }
       comboBox0.getItems().addAll(teamNames);
@@ -147,7 +142,6 @@ public class HelloController
       }
       else
       {
-        menuLabel1.setText(file.getPath());
         try
         {
           BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -162,8 +156,8 @@ public class HelloController
         {
           e.printStackTrace();
         }
-        System.out.println(classrooms);
-        for(Classroom classroom : classrooms){
+        for (Classroom classroom : classrooms)
+        {
           classroomsArrayList.add(classroom.getName());
         }
       }
@@ -186,55 +180,55 @@ public class HelloController
       }
       else
       {
-        menuLabel2.setText(file.getPath());
-      try
-      {
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        while ((line = reader.readLine()) != null)
+        try
         {
-          String[] courseLine = line.split(splitBy);
-          if (!(allLecturers.contains(courseLine[3])))
+          BufferedReader reader = new BufferedReader(new FileReader(file));
+          while ((line = reader.readLine()) != null)
           {
-            allLecturers.add(courseLine[3]);
+            String[] courseLine = line.split(splitBy);
+            if (!(allLecturers.contains(courseLine[3])))
+            {
+              allLecturers.add(courseLine[3]);
+            }
+            Course temp = null;
+            boolean courseTeam = false;
+            for (Course c : courses)
+            {
+              courseTeam = c.isCourseTeam(courseLine[1], courseLine[2]);
+              if (courseTeam)
+              {
+                temp = c;
+                break;
+              }
+            }
+            if (temp != null)
+            {
+              temp.getLecturers().add(new Lecturer(courseLine[3]));
+            }
+            else
+            {
+              ArrayList<Lecturer> lecturersCourse = new ArrayList<>();
+              lecturersCourse.add(new Lecturer(courseLine[3]));
+              courses.add(
+                  new Course(courseLine[2], Integer.parseInt(courseLine[4]),
+                      courseLine[1], lecturersCourse));
+            }
           }
-          Course temp = null;
-          boolean courseTeam = false;
           for (Course c : courses)
           {
-            courseTeam = c.isCourseTeam(courseLine[1], courseLine[2]);
-            if (courseTeam)
+            for (Team team : teams)
             {
-              temp = c;
-              break;
-            }
-          }
-          if (temp != null)
-          {
-            temp.getLecturers().add(new Lecturer(courseLine[3]));
-          }
-          else
-            {
-            ArrayList<Lecturer> lecturersCourse = new ArrayList<>();
-            lecturersCourse.add(new Lecturer(courseLine[3]));
-            courses.add(new Course(courseLine[2], Integer.parseInt(courseLine[4]),
-                courseLine[1], lecturersCourse));
-            }
-          }
-        for (Course c : courses)
-        {
-          for (Team team : teams)
-          {
-            if (team.getTeamName().equals(c.getTeamNames()))
-            {
-              c.setTeam(team);
+              if (team.getTeamName().equals(c.getTeamNames()))
+              {
+                c.setTeam(team);
+              }
             }
           }
         }
-      }
-      catch(Exception e){
-        e.printStackTrace();
-      }
-        System.out.println(courses.get(0).getCourseName());
+        catch (Exception e)
+        {
+          e.printStackTrace();
+        }
       }
       comboBox3.getItems().addAll(allLecturers);
       comboBox3.getSelectionModel().selectFirst();
@@ -262,8 +256,7 @@ public class HelloController
   }
 
   @FXML protected void setSideInformation1(String room, String subject,
-      String lecturer, int year, int week, int day, int moduleIndex,
-      int duration)
+      String lecturer, int year, int week, int day, int moduleIndex)
   {
     // Room, Subject and Lecturers
     int roomIndex = classroomsArrayList.indexOf(room);
@@ -274,9 +267,6 @@ public class HelloController
     comboBox2.getSelectionModel().select(subjectsIndex);
     comboBox3.getSelectionModel().select(lecturerIndex);
 
-    // Duration;
-    textField0.setText(duration + "");
-
     // Start time
     textField1.setText(year + "");
     textField2.setText(week + "");
@@ -286,13 +276,10 @@ public class HelloController
 
   @FXML private void setSideInformation(ActionEvent event)
   {
+    // Use buttonID to get data and send it to the setSideInformation function below
     Button button = (Button) event.getSource();
     String buttonID = button.getId();
 
-    // Use buttonID to get data and send it to the setSideInformation function below
-    System.out.println(buttonID);
-
-    setSideInformation1("C7.14", "DMA", "IOOD", 2021, 12, 1, 1, 1);
   }
 
   @FXML private void createLesson()
@@ -301,82 +288,64 @@ public class HelloController
     String subject = comboBox2.getSelectionModel().getSelectedItem();
     String lecturer = comboBox3.getSelectionModel().getSelectedItem();
     Classroom currentClassroom = new Classroom();
-    int duration = Integer.parseInt(textField0.getText());
     int year = Integer.parseInt(textField1.getText());
     int week = Integer.parseInt(textField2.getText());
     int day = Integer.parseInt(textField3.getText());
-    int hour = 0;
-    int minute = 0;
     int moduleIndex = Integer.parseInt(textField4.getText());
     String team = comboBox0.getSelectionModel().getSelectedItem();
-    if(moduleIndex == 1){
-      hour = 8;
-      minute = 20;
-    } if(moduleIndex == 2){
-      hour = 10;
-      minute = 5;
-    } if(moduleIndex == 3){
-      hour = 12;
-      minute = 45;
-    } if(moduleIndex == 4){
-      hour = 14;
-      minute = 20;
-    }
-    model.Date date = new model.Date(year, week, day, hour, minute);
+    model.Date date = new model.Date(year, week, day);
 
-    for(Classroom classroom : classrooms){
-      if(classroom.getName().equals(room)){
+    for (Classroom classroom : classrooms)
+    {
+      if (classroom.getName().equals(room))
+      {
         currentClassroom = classroom;
       }
     }
 
     //create lesson object
     Course currentCourse = new Course();
-    for (Course course: courses){
-      if(course.getTeam().getTeamName().equals(team) && course.getCourseName().equals(subject) && course.getLecturers().equals(lecturer)){
+    for (Course course : courses)
+    {
+      if (course.getTeam().getTeamName().equals(team) && course.getCourseName()
+          .equals(subject) && course.getLecturers().equals(lecturer))
+      {
         currentCourse = course;
       }
     }
-    schedule.getLessons().add(new Lesson(currentCourse, date, currentClassroom));
-    System.out.println(schedule.getLessons());
+    schedule.getLessons()
+        .add(new Lesson(currentCourse, date, currentClassroom, moduleIndex));
     int subjectsIndex = Arrays.asList(subjects).indexOf(subject);
-
     if (day - 1 >= 0 && day <= 5 && moduleIndex >= 1 && moduleIndex <= 4
-        && !takenLessons[day - 1][moduleIndex - 1] && duration >= 1
-        && duration <= 2 || (day >= 3 && duration == 2))
+        && !takenLessons[day - 1][moduleIndex - 1])
     {
-      gridPane.setGridLinesVisible(
-          false);
-      for (int i = 0; i < duration; i++)
+      gridPane.setGridLinesVisible(false);
+      Button lesson = new Button(subject);
+      lesson.setPrefWidth(10000);
+      lesson.setPrefHeight(10000);
+      GridPane.setConstraints(lesson, 1, 0);
+      lesson.setId("lesson" + (day) + "" + (moduleIndex) + "");
+      lesson.setStyle("-fx-background-color: " + subjectColors[subjectsIndex]);
+
+      lesson.setOnAction(new EventHandler<ActionEvent>()
       {
-        Button lesson = new Button(subject);
-        lesson.setPrefWidth(10000);
-        lesson.setPrefHeight(10000);
-        GridPane.setConstraints(lesson, duration, 0);
-        lesson.setId("lesson" + (day) + "" + (moduleIndex + i) + "");
-        lesson.setStyle(
-            "-fx-background-color: " + subjectColors[subjectsIndex]);
-
-        lesson.setOnAction(new EventHandler<ActionEvent>()
+        @Override public void handle(ActionEvent event)
         {
-          @Override public void handle(ActionEvent event)
-          {
-            setSideInformation(event);
-          }
-        });
+          setSideInformation(event);
+        }
+      });
 
-        takenLessons[day - 1][moduleIndex + i - 1] = true;
-        gridPane.add(lesson, day - 1, (moduleIndex - 1 + i));
-      }
+      takenLessons[day - 1][moduleIndex - 1] = true;
+      gridPane.add(lesson, day - 1, (moduleIndex - 1));
       gridPane.setGridLinesVisible(true);
     }
+    System.out.println(schedule.getLessons());
   }
 
   @FXML public void cancelLesson(ActionEvent event)
   {
     int day = Integer.parseInt(textField3.getText());
     int moduleIndex = Integer.parseInt(textField4.getText());
-
     if (takenLessons[day - 1][moduleIndex - 1])
     {
       Button lesson = (Button) borderPane.lookup(
@@ -384,18 +353,14 @@ public class HelloController
       takenLessons[day - 1][moduleIndex - 1] = false;
       gridPane.getChildren().remove(lesson);
     }
-
-    int duration = Integer.parseInt(textField0.getText());
-
-    if (takenLessons[day - 1][moduleIndex - 1 + 1] && duration == 2)
-    {
-      Button lesson = (Button) borderPane.lookup(
-          "#lesson" + (day) + "" + (moduleIndex + 1));
-      takenLessons[day - 1][moduleIndex - 1 + 1] = false;
-      gridPane.getChildren().remove(lesson);
+    for (Lesson lesson:schedule.getLessons()){
+      if(lesson.getDateLesson().getWeek() == currentWeek
+          && lesson.getDateLesson().getDayOfWeek() == day
+          && lesson.getModuleIndex() == moduleIndex){
+        schedule.getLessons().remove(lesson);
+        break;
+      }
     }
-
-    // Use button id to change backend data (Remove lesson-block)
   }
 
   @FXML protected void clearSchedule()

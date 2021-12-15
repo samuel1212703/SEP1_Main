@@ -28,6 +28,7 @@ public class Course
   {
     this.lecturers = lecturers;
   }
+
   public void addLecturers(Lecturer lecturer)
   {
     this.lecturers.add(lecturer);
