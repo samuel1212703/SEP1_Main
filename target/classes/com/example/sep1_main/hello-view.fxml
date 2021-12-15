@@ -64,7 +64,6 @@
                                             </VBox.margin>
                                         </ComboBox>
                                         <ComboBox fx:id="comboBox3" prefWidth="150.0" promptText="Lecturers" />
-                                        <TextField fx:id="textField0" promptText="Duration (1-2)" />
                                         <TextField fx:id="textField1" promptText="Year" />
                               <TextField fx:id="textField2" prefHeight="25.0" prefWidth="57.0" promptText="Week" />
                                         <TextField fx:id="textField3" promptText="Day (1-5)" />
@@ -75,6 +74,7 @@
                                                 <Button fx:id="sideCancelButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelLesson" prefWidth="10000.0" text="Cancel" textAlignment="CENTER" />
                                             </children>
                                         </HBox>
+                              <Button fx:id="sideDoneButton1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createLesson" prefHeight="54.0" prefWidth="125.0" text="Export" textAlignment="CENTER" />
                                     </children>
                                     <BorderPane.margin>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
