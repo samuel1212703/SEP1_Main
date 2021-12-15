@@ -12,6 +12,8 @@ public class Classroom
     this.capacity = capacity;
   }
 
+  public Classroom(){}
+
   public String getName()
   {
     return name;

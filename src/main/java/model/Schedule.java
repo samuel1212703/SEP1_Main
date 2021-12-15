@@ -15,4 +15,5 @@ public class Schedule
   public ArrayList<Lesson> getLessons(){
     return lessons;
   }
+
 }

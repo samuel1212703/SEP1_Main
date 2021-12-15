@@ -41,6 +41,7 @@ public class HelloController
   @FXML private Label menuLabel2;
   @FXML private TextField weekTextField;
 
+  Schedule schedule = new Schedule();
   ArrayList<Team> teams = new ArrayList<>();
   ArrayList<Classroom> classrooms = new ArrayList<>();
   ArrayList<String> allLecturers = new ArrayList<>();
@@ -299,6 +300,7 @@ public class HelloController
     String room = comboBox1.getSelectionModel().getSelectedItem();
     String subject = comboBox2.getSelectionModel().getSelectedItem();
     String lecturer = comboBox3.getSelectionModel().getSelectedItem();
+    Classroom currentClassroom = new Classroom();
     int duration = Integer.parseInt(textField0.getText());
     int year = Integer.parseInt(textField1.getText());
     int week = Integer.parseInt(textField2.getText());
@@ -322,18 +324,21 @@ public class HelloController
     }
     model.Date date = new model.Date(year, week, day, hour, minute);
 
+    for(Classroom classroom : classrooms){
+      if(classroom.getName().equals(room)){
+        currentClassroom = classroom;
+      }
+    }
+
     //create lesson object
-    Schedule schedule = new Schedule();
     Course currentCourse = new Course();
     for (Course course: courses){
       if(course.getTeam().getTeamName().equals(team) && course.getCourseName().equals(subject) && course.getLecturers().equals(lecturer)){
         currentCourse = course;
       }
     }
-
-
-    schedule.getLessons().add(new Lesson(currentCourse,date));
-
+    schedule.getLessons().add(new Lesson(currentCourse, date, currentClassroom));
+    System.out.println(schedule.getLessons());
     int subjectsIndex = Arrays.asList(subjects).indexOf(subject);
 
     if (day - 1 >= 0 && day <= 5 && moduleIndex >= 1 && moduleIndex <= 4

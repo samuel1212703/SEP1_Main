@@ -5,15 +5,14 @@ import java.util.Calendar;
 public class Lesson
 {
   private Date startTime;
-  private int duration;
-  private String classroom;
+  private Classroom classroom;
   private Course course;
 
-  public Lesson(Course course, Date startTime)
+  public Lesson(Course course, Date startTime, Classroom classroom)
   {
     this.course = course;
     this.startTime = startTime;
-    this.duration = duration;
+    this.classroom = classroom;
   }
 
 
