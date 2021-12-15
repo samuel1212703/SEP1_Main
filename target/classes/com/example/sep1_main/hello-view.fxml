@@ -72,13 +72,19 @@
                                             </children>
                                         </HBox>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                               <Button fx:id="exportButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exportSchedule" prefHeight="54.0" prefWidth="125.0" text="Export" textAlignment="CENTER" />
 =======
+=======
+>>>>>>> Stashed changes
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="133.0" text="Export" />
                                  </children>
                               </HBox>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                                     </children>
                                     <BorderPane.margin>
